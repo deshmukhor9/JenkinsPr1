@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        python = 'C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313'
+        PYTHON = "C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313"
     }
     stages{
         stage('Checkout code'){
@@ -11,9 +11,9 @@ pipeline{
         }
         stage('Extract data'){
             steps{
-                bat '${env.python} extract.py'
+                bat '${env.PYTHON} extract.py'
             }
         }
     }
-    
+
 }
