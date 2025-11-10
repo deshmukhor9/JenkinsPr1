@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        PYTHON = "C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313"
+        PYTHON = "C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
     }
     stages{
         stage('Checkout code'){
