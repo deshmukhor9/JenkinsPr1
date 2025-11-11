@@ -41,11 +41,37 @@
 // //     }   
 // // }
 
+//api data export
+// pipeline{
+//     agent any
+//     environment {
+//         PYTHON = 'C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+//     }
+//     stages{
+//         stage('checkout code'){
+//             steps{
+//                 checkout scm
+//             }
+//         }
+//         stage('Extract data'){
+//             steps{
+//                 bat "${env.PYTHON} -m pip install -r requirements.txt"
+//             }
+//         }
+//         stage('Extract Data'){
+//             steps{
+//                 bat "${env.PYTHON} extract_from_api.py"
+//             }
+//         }
+//     }
+// }
 
+// secret token
 pipeline{
     agent any
     environment {
         PYTHON = 'C:\\Users\\deshm\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
+        APP_TOKEN = credentials('APP_TOKEN')
     }
     stages{
         stage('checkout code'){
@@ -60,7 +86,8 @@ pipeline{
         }
         stage('Extract Data'){
             steps{
-                bat "${env.PYTHON} extract_from_api.py"
+                bat """SET TOKEN = %APP_TOKEN%
+                %PYTHON% extract_from_api.py"""
             }
         }
     }
